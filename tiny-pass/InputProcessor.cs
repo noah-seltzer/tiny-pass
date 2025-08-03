@@ -1,8 +1,9 @@
 ﻿namespace tiny_pass;
 
+// Wraps Console
 public class InputProcessor
 {
-    void printMessage(String? message)
+    public void PrintMessage(String? message)
     {
         if (message == null)
         {
@@ -11,15 +12,15 @@ public class InputProcessor
         Console.WriteLine(message);
         
     }
-    public String getNextLine(String? message)
+    public String? GetNextLine(String? message)
     {
-        printMessage(message);
+        PrintMessage(message);
         return Console.ReadLine();
     }
 
-    public String getNextLineSecret(String? message)
+    public String? GetNextLineSecret(String? message = null)
     {
-        printMessage(message);
+        PrintMessage(message);
         string secret = null;
         while (true)
         {
@@ -31,16 +32,14 @@ public class InputProcessor
         return secret;
     }
 
-    public char getNextChar(String? message, bool? intercept)
+    public char GetNextChar(String? message = null, bool intercept = false)
     {
-        printMessage(message);
-        return Console.ReadKey(intercept ??= false).KeyChar;
+        PrintMessage(message);
+        return Console.ReadKey(intercept).KeyChar;
     }
 
-    public void clearInput()
+    public void ClearInput()
     {
         Console.Clear();
     }
-    
-    
 }
