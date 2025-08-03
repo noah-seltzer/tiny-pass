@@ -1,19 +1,25 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
+using System.IO;
+using tiny_pass;
 
-Console.WriteLine("\"Press + to add a new item, any other key to search available secrets \"");
 
-var key = Console.ReadKey(true);
-if (key.KeyChar == '+') {
-    Console.WriteLine("Enter secret name + ENTER");
-    var name = Console.ReadLine();
-    Console.Clear();
-    Console.WriteLine($"Enter the secret value + ENTER");
-    var value = Console.ReadLine();
-    
-    
-    
-    
+var inputProcessor = new InputProcessor();
+var key = inputProcessor.getNextChar("\"Press + to add a new item, any other key to search available secrets \"", true);
+if (key == '+') {
+    var name = inputProcessor.getNextLine("Enter secret name + ENTER");
+    inputProcessor.clearInput();
+    var secret = inputProcessor.getNextLineSecret("Enter secret value + ENTER");
+    Console.WriteLine($"{name}{secret}");
 }
-Console.WriteLine($"got: {key.Key}");
+else
+{
+    inputProcessor.clearInput();
+    String[] secrets = ["secretA", "secretB"];
+    
+    
+
+}
+// Console.WriteLine($"got: {key}");
 
 
